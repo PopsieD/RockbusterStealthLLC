@@ -1,0 +1,11 @@
+Select customer.customer_id, customer.last_name, customer.first_name, country.country, city.city, sum(payment.amount) as total_amount
+from payment
+ 	join rental on payment.rental_id=rental.rental_id
+	join customer on rental.customer_id=customer.customer_id
+	join address on customer.address_id=address.address_id
+	join city on address.city_id=city.city_id
+	join country on city.country_id=country.country_id
+where city.city_id=42 or city.city_id=261 or city.city_id=499 or city.city_id=46 or city.city_id=118 or city.city_id=246 or city.city_id=197 or city.city_id=451 or city.city_id=474 or city.city_id=317
+group by customer.customer_id, customer.last_name, customer.first_name, country.country, city.city
+order by sum(payment.amount) desc
+limit 5;
