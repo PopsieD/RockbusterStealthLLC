@@ -1,0 +1,13 @@
+Select country.country,city.city, count(address.address_id) as customer_count
+from customer
+inner join address on customer.address_id=address.address_id
+full join city on address.city_id=city.city_id
+full join country on city.country_id=country.country_id
+where country.country_id=44 or country.country_id=103 
+	or country.country_id=23 or country.country_id=50 
+	or country.country_id=60 or country.country_id=15 
+	or country.country_id=80 or country.country_id=75 
+	or country.country_id=97 or country.country_id=45
+group by city.city, country.country
+order by count(address.address_id) desc
+limit 10;
